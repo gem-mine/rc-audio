@@ -33,7 +33,7 @@ class App extends React.Component {
     song: songs[0]
   }
   index = 0
-  changeSong = () => {
+  nextSong = () => {
     if (this.index >= songs.length - 1) {
       this.index = 0
     } else {
@@ -46,14 +46,14 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Audio 
+        <Audio
           volume={0.2}
+          autoPlay={true}
           showProgressBarInfo={false}
-          onEnded={() => {console.log('播放结束')}}
           src={this.state.song.url}
         />
         <br />  
-        <Button onClick={this.changeSong}>换一首</Button>
+        <Button onClick={this.nextSong}>换一首</Button>
         <br />
         <br />
         <span>正在播放：{this.state.song.title}</span>

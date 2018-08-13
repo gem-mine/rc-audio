@@ -23,7 +23,7 @@ export default class Audio extends Component {
     this.audioRef.volume = volume
   }
   setCurrentTime = (currentTime) => {
-    this.audioRef.currentTime = currentTime
+    this.audioRef.currentTime = parseFloat(currentTime)
   }
   setMuted = (muted) => {
     this.audioRef.muted = muted
@@ -42,8 +42,8 @@ export default class Audio extends Component {
     return (
       <audio
         {...restProps}
-        src={srcRes}
         ref={(ref) => { this.audioRef = ref }}
+        src={srcRes}
       >
         {children}
       </audio>

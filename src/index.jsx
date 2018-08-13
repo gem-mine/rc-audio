@@ -48,10 +48,7 @@ class PrimaryAudio extends Component {
     }
   }
   componentDidMount () {
-    const { autoPlay, volume } = this.props
-    if (autoPlay) {
-      this.setState({playing: autoPlay})
-    }
+    const { volume } = this.props
     if (volume) {
       this.setVolume(this.props.volume)
     }
@@ -193,6 +190,7 @@ class PrimaryAudio extends Component {
   onDurationChange = (e) => {
     this.setCuePoint(this.props.cuePoints)
     this.setState({duration: this.audio.getDuration()})
+    this.setState({playing: false})
 
     const { onDurationChange } = this.props
     if (onDurationChange) {
