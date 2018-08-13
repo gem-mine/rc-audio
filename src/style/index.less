@@ -73,28 +73,24 @@
       top: -2px;
       margin-left: -6px;
     }
-    &-tag-wrap {
-      //overflow-y: hidden;
-      .@{audio-prefix-cls}-progress-tag {
+    .@{audio-prefix-cls}-progress-tag {
+      position: absolute;
+      height: 8px;
+      width: 4px;
+      background: #C9C9C9;
+      top: 0;
+      z-index: 4;
+      &-tip {
+        display: none;
         position: absolute;
-        height: 8px;
-        width: 4px;
-        margin-left: -2px;
-        background: #C9C9C9;
-        top: 0;
-        z-index: 4;
-        &-tip {
-          display: none;
-          position: absolute;
-          top: -25px;
-          left: -16px;
-          white-space: nowrap;
-          background: #252526;
-        }
-        &:hover {
-          .@{audio-prefix-cls}-progress-tag-tip {
-            display: block;
-          }
+        top: -25px;
+        left: -16px;
+        white-space: nowrap;
+        background: #252526;
+      }
+      &:hover {
+        .@{audio-prefix-cls}-progress-tag-tip {
+          display: block;
         }
       }
     }

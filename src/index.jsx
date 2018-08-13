@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Time from './time'
-import ProgressBar from './progressBar'
+import Progress from './progress'
 import Volume from './volume'
 import Audio from './audio'
 import addEventListener from 'rc-util/lib/Dom/addEventListener'
@@ -15,17 +15,27 @@ class PrimaryAudio extends Component {
     onPlay: React.PropTypes.func,
     onPause: React.PropTypes.func,
     onTimeUpdate: React.PropTypes.func,
-    startVolume: React.PropTypes.number,
-    startTime: React.PropTypes.number,
+    volume: React.PropTypes.number,
+    currentTime: React.PropTypes.number,
     autoPlay: React.PropTypes.bool,
     showBufferProgress: React.PropTypes.bool,
-    showProgressBarInfo: React.PropTypes.bool
+    showProgressBarInfo: React.PropTypes.bool,
+    cuePoints: React.PropTypes.array,
+    onCuePoints: React.PropTypes.func,
+    onSeeked: React.PropTypes.func,
+    onLoadStart: React.PropTypes.func,
+    onDurationChange: React.PropTypes.func
   }
   static defaultProps = {
     prefixCls: 'rc-audio',
     showBufferProgress: true,
-    showProgressBarInfo: true
+    showProgressBarInfo: true,
+    cuePoints: []
   }
+
+  segments = {}
+  lastFiredSegment = -0.125
+
   constructor (props) {
     super(props)
     this.state = {
@@ -38,12 +48,12 @@ class PrimaryAudio extends Component {
     }
   }
   componentDidMount () {
-    const { autoPlay, startVolume } = this.props
+    const { autoPlay, volume } = this.props
     if (autoPlay) {
       this.setState({playing: autoPlay})
     }
-    if (startVolume) {
-      this.setVolume(this.props.startVolume)
+    if (volume) {
+      this.setVolume(this.props.volume)
     }
   }
 
@@ -54,7 +64,7 @@ class PrimaryAudio extends Component {
       const bufferedTime = timeRanges.end(timeRanges.length - 1)
       this.setState({bufferedTime})
       if (bufferedTime <= duration) {
-        setTimeout(this.handleBuffer, 500)
+        setTimeout(this.handleBuffer, 800)
       }
     }
   }
@@ -69,22 +79,57 @@ class PrimaryAudio extends Component {
     this.audio.setCurrentTime(currentTime)
   }
 
-  onTimeUpdate = (e) => {
-    if (!this.holding) {
-      this.setState({currentTime: this.audio.getCurrentTime()})
+  setCuePoint = (cues) => {
+    this.cuepoints = []
+    this.segments = {}
+    cues.forEach(this.addCuePoint)
+  }
+
+  // 添加处理标识点
+  addCuePoint = (cue) => {
+    if (!this.cuepoints) {
+      this.cuepoints = []
     }
-    // todo: 触发打点事件
-    // const { progressTags, onProgressTags } = this.props
-    // if (progressTags) {
-    //   const hasTime = progressTags.filter((item) => {
-    //     return item.time === parseInt(this.audio.getCurrentTime())
-    //   })
-    //
-    //   if (hasTime.length !== 0 && this.lastTime !== parseInt(this.audio.getCurrentTime())) {
-    //     this.lastTime = parseInt(this.audio.getCurrentTime())
-    //     onProgressTags(parseInt(this.audio.getCurrentTime()))
-    //   }
-    // }
+    if (typeof cue === 'number') {
+      cue = {
+        time: cue
+      }
+    }
+    cue.index = 0
+    const segment = this.segmentForCue(cue)
+    if (!this.segments[segment]) {
+      this.segments[segment] = []
+    }
+    this.segments[segment].push(cue)
+    if (this.cuepoints.length) {
+      cue.index = Math.max.apply(null, this.cuepoints.map((cue) => { return cue.index })) + 1
+    }
+    this.cuepoints.push(cue)
+  }
+
+  segmentForCue = (cue) => {
+    let time = cue && !isNaN(cue.time) ? cue.time : cue
+    if (time < 0) time = this.audio.getDuration() + time
+    return Math.round(time / 0.125) * 0.125
+  }
+
+  onTimeUpdate = (e) => {
+    const currentTime = this.audio.getCurrentTime()
+    if (!this.holding) {
+      this.setState({currentTime})
+    }
+
+    // 触发提示点事件
+    const segment = this.segmentForCue(currentTime)
+    while (this.lastFiredSegment < segment) {
+      this.lastFiredSegment += 0.125
+      if (!this.segments[this.lastFiredSegment]) {
+        continue
+      }
+      this.segments[this.lastFiredSegment].forEach((item) => {
+        this.props.onCuePoints(item, this.audio)
+      })
+    }
 
     const { onTimeUpdate } = this.props
     if (onTimeUpdate) {
@@ -92,19 +137,27 @@ class PrimaryAudio extends Component {
     }
   }
 
-  onCanPlay = (e) => {
-    this.setState({duration: this.audio.getDuration()})
-    const { onCanPlay } = this.props
-    if (onCanPlay) {
-      onCanPlay(e)
+  onSeeked = (e) => {
+    const currentTime = this.audio.getCurrentTime()
+    this.lastFiredSegment = this.segmentForCue(currentTime || 0) - 0.125
+    // 跳转到第0秒时
+    if (!currentTime && this.segments[0]) {
+      this.segments[0].forEach((item) => {
+        this.props.onCuePoints(item, this.audio)
+      })
+    }
+
+    const { onSeeked } = this.props
+    if (onSeeked) {
+      onSeeked(e)
     }
   }
 
   onLoadedMetadata = () => {
-    const { startTime } = this.props
-    if (startTime) {
-      this.setState({currentTime: startTime})
-      this.setCurrentTime(startTime)
+    const { currentTime } = this.props
+    if (currentTime) {
+      this.setState({currentTime: currentTime})
+      this.setCurrentTime(currentTime)
     }
   }
 
@@ -125,10 +178,26 @@ class PrimaryAudio extends Component {
       onPause(e)
     }
   }
-  onLoadStart = () => {
+
+  onLoadStart = (e) => {
     setTimeout(() => {
       this.handleBuffer()
     }, 500)
+
+    const { onLoadStart } = this.props
+    if (onLoadStart) {
+      onLoadStart(e)
+    }
+  }
+
+  onDurationChange = (e) => {
+    this.setCuePoint(this.props.cuePoints)
+    this.setState({duration: this.audio.getDuration()})
+
+    const { onDurationChange } = this.props
+    if (onDurationChange) {
+      onDurationChange(e)
+    }
   }
 
   togglePlay = () => {
@@ -173,6 +242,7 @@ class PrimaryAudio extends Component {
   onProgressMouseUp = () => {
     this.holding = false
     this.audio.setCurrentTime(this.state.currentTime)
+
     if (this.progressMouseMove) {
       this.progressMouseMove.remove()
     }
@@ -221,18 +291,24 @@ class PrimaryAudio extends Component {
   }
 
   render () {
-    const { prefixCls, showBufferProgress, showProgressBarInfo, progressTags, children, onTimeUpdate, onCanPlay, ...restProps } = this.props
+    const {
+      prefixCls,
+      showBufferProgress,
+      showProgressBarInfo,
+      cuePoints,
+      ...restProps } = this.props
 
     return (
       <div className={`${prefixCls}`}>
-        <ProgressBar
+        <Progress
           prefixCls={prefixCls}
-          progressTags={progressTags}
+          cuePoints={cuePoints}
           showProgressBarInfo={showProgressBarInfo}
           currentTime={this.state.currentTime}
           duration={this.state.duration}
           bufferedTime={this.state.bufferedTime}
           showBufferProgress={showBufferProgress}
+          setCurrentTime={this.setCurrentTime}
           onProgressMouseDown={this.onProgressMouseDown} />
         <div className={`${prefixCls}-content`}>
           <div
@@ -249,7 +325,6 @@ class PrimaryAudio extends Component {
           <Volume
             prefixCls={this.props.prefixCls}
             volume={this.state.volume}
-            startVolume={this.props.startVolume}
             muted={this.state.muted}
             onVolumeMouseDown={this.onVolumeMouseDown}
             toggleMuted={this.toggleMuted}
@@ -258,9 +333,10 @@ class PrimaryAudio extends Component {
         <Audio
           {...restProps}
           ref={(node) => { this.audio = node }}
-          onCanPlay={this.onCanPlay}
+          onDurationChange={this.onDurationChange}
           onLoadStart={this.onLoadStart}
           onLoadedMetadata={this.onLoadedMetadata}
+          onSeeked={this.onSeeked}
           onPause={this.onPause}
           onPlay={this.onPlay}
           onTimeUpdate={this.onTimeUpdate} />

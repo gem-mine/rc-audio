@@ -7,10 +7,11 @@ export default class ProgressBar extends Component {
     currentTime: React.PropTypes.number,
     duration: React.PropTypes.number,
     onProgressMouseDown: React.PropTypes.func,
-    progressTags: React.PropTypes.array,
+    cuePoints: React.PropTypes.array,
     bufferedTime: React.PropTypes.number,
     showBufferProgress: React.PropTypes.bool,
-    showProgressBarInfo: React.PropTypes.bool
+    showProgressBarInfo: React.PropTypes.bool,
+    setCurrentTime: React.PropTypes.func
   }
   constructor (props) {
     super(props)
@@ -30,13 +31,19 @@ export default class ProgressBar extends Component {
       })
     }
   }
+  onCuePointClick = (e, time) => {
+    e.stopPropagation && e.stopPropagation()
+    e.cancelBubble = true
+
+    this.props.setCurrentTime(time)
+  }
   onMouseOut = () => {
     this.setState({
       hoverTip: ''
     })
   }
   render () {
-    const { prefixCls, progressTags, currentTime, duration, bufferedTime, showBufferProgress } = this.props
+    const { prefixCls, cuePoints, currentTime, duration, bufferedTime, showBufferProgress } = this.props
     return (
       <div
         className={`${prefixCls}-progress`}
@@ -52,19 +59,21 @@ export default class ProgressBar extends Component {
             {secondsToTime(this.state.hoverTip)}</span>
         }
         {/* 进度条打点标记 */}
-        <div className={`${prefixCls}-progress-tag-wrap`}>
-          {
-            progressTags ? progressTags.map((item) => {
-              if (item.time >= 0 && item.time <= duration) {
-                return (
-                  <span key={item.time} className={`${prefixCls}-progress-tag`} style={{left: decimalToPercent(item.time / duration)}}>
-                    <span className={`${prefixCls}-progress-tag-tip`}>{item.title}</span>
-                  </span>
-                )
-              }
-            }) : null
-          }
-        </div>
+        {
+          cuePoints.length > 0 ? cuePoints.map((item) => {
+            if (item.time >= 0 && item.time <= duration) {
+              return (
+                <span
+                  onClick={(e) => { this.onCuePointClick(e, item.time) }}
+                  key={item.time}
+                  className={`${prefixCls}-progress-tag`}
+                  style={{left: decimalToPercent(item.time / duration)}}>
+                  <span className={`${prefixCls}-progress-tag-tip`}>{item.title}</span>
+                </span>
+              )
+            }
+          }) : null
+        }
         {
           showBufferProgress ? <div className={`${prefixCls}-progress-buffer`} style={{ width: decimalToPercent(bufferedTime / duration) }} /> : null
         }
