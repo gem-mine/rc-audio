@@ -309,9 +309,9 @@ class PrimaryAudio extends Component {
           showBufferProgress={showBufferProgress}
           setCurrentTime={this.setCurrentTime}
           onProgressMouseDown={this.onProgressMouseDown} />
-        <div className={`${prefixCls}-content`}>
+        <div className={`${prefixCls}-operate`}>
           <Switch
-            prefixCls={this.props.prefixCls}
+            prefixCls={prefixCls}
             playing={this.state.playing}
             togglePlay={this.togglePlay}
           />

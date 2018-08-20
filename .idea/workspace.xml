@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f3e50a7-2f49-4e28-b4ce-b91479a0a6f2" name="Default" comment="1. 添加多首歌demo&#10;2. cuePoints参数和onCuePoints事件处理">
-      <change afterPath="$PROJECT_DIR$/src/switch.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/site/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/site/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/style/index.less" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/index.less" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +22,14 @@
       <file leaf-file-name="index.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5361">
-              <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+            <state relative-caret-position="185">
+              <caret line="342" column="1" lean-forward="true" selection-start-line="342" selection-start-column="1" selection-end-line="342" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#40#0" expanded="true" />
+                <element signature="e#7741#8160#0" />
+                <element signature="e#8169#8912#0" />
+                <element signature="e#9127#9494#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -31,8 +37,8 @@
       <file leaf-file-name="switch.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/switch.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+            <state relative-caret-position="198">
+              <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
               </folding>
@@ -43,7 +49,9 @@
       <file leaf-file-name="progress.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/progress.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1080" />
+            <state relative-caret-position="234">
+              <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+            </state>
           </provider>
         </entry>
       </file>
@@ -69,7 +77,13 @@
         <entry file="file://$PROJECT_DIR$/src/style/index.less">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="216">
-              <caret line="136" column="1" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="1" />
+              <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+              <folding>
+                <element signature="e#503#1516#2" expanded="true" />
+                <element signature="e#1562#3171#2" expanded="true" />
+                <element signature="e#4994#6359#2" expanded="true" />
+                <element signature="e#6408#8457#2" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -123,7 +137,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>red</find>
       <find>-tag</find>
       <find>todo</find>
       <find>lodash</find>
@@ -153,11 +166,13 @@
       <find>duration</find>
       <find>durationC</find>
       <find>play</find>
+      <find>-content</find>
     </findStrings>
     <replaceStrings>
       <replace>?size=80</replace>
       <replace>nativeAudioRef.audioRef</replace>
       <replace>onProgressMouseMove</replace>
+      <replace>-operate</replace>
     </replaceStrings>
     <dirStrings>
       <dir>E:\company\rc-galleay</dir>
@@ -193,7 +208,6 @@
         <option value="$PROJECT_DIR$/src/style/iconfont.less" />
         <option value="$PROJECT_DIR$/src/iconfont.js" />
         <option value="$PROJECT_DIR$/src/time.jsx" />
-        <option value="$PROJECT_DIR$/src/style/index.less" />
         <option value="$PROJECT_DIR$/CHANGELOG.md" />
         <option value="$PROJECT_DIR$/src/style/index.js" />
         <option value="$PROJECT_DIR$/.gitignore" />
@@ -202,7 +216,6 @@
         <option value="$PROJECT_DIR$/src/progressBar.jsx" />
         <option value="$PROJECT_DIR$/src/demo/progressTags.md" />
         <option value="$PROJECT_DIR$/src/demo/multi-songs.md" />
-        <option value="$PROJECT_DIR$/src/progress.jsx" />
         <option value="$PROJECT_DIR$/src/index.md" />
         <option value="$PROJECT_DIR$/src/volume.jsx" />
         <option value="$PROJECT_DIR$/src/demo/basic.md" />
@@ -211,6 +224,8 @@
         <option value="$PROJECT_DIR$/src/audio.jsx" />
         <option value="$PROJECT_DIR$/src/demo/multiSongs.md" />
         <option value="$PROJECT_DIR$/src/switch.jsx" />
+        <option value="$PROJECT_DIR$/src/progress.jsx" />
+        <option value="$PROJECT_DIR$/src/style/index.less" />
         <option value="$PROJECT_DIR$/src/index.jsx" />
       </list>
     </option>
@@ -284,6 +299,12 @@
               <item name="rc-audio" type="b2602c69:ProjectViewProjectNode" />
               <item name="rc-audio" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rc-audio" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rc-audio" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="style" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -543,11 +564,18 @@
       <option name="project" value="LOCAL" />
       <updated>1534160354416</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="播放暂停分离出Switch">
+      <created>1534776552045</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1534776552045</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="211478000" />
+    <option name="totallyTimeSpent" value="213011000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -570,7 +598,7 @@
       <window_info id="npm" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49578503" visible="true" weight="0.09704641" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" sideWeight="0.49578503" visible="true" weight="0.43741208" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -637,7 +665,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="初始化 提交" />
     <MESSAGE value="修改文案" />
     <MESSAGE value="1. 修改对fish的依赖，改为从外面传入icon和spin组件&#10;2. 去除demo多余代码" />
     <MESSAGE value="去除console.polyfill" />
@@ -661,7 +688,9 @@
     <MESSAGE value="初始化" />
     <MESSAGE value="1. 添加多首歌demo&#10;2. cuePoints参数和onCuePoints事件处理" />
     <MESSAGE value="暂存" />
-    <option name="LAST_COMMIT_MESSAGE" value="暂存" />
+    <MESSAGE value="播放暂停分离出witchS" />
+    <MESSAGE value="播放暂停分离出Switch" />
+    <option name="LAST_COMMIT_MESSAGE" value="播放暂停分离出Switch" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -778,13 +807,6 @@
     <entry file="file://$PROJECT_DIR$/node_modules/rc-util/lib/Dom/addEventListener.js">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/style/index.less">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="136" column="1" selection-start-line="136" selection-start-column="1" selection-end-line="136" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/iconfont.js" />
     <entry file="file://$PROJECT_DIR$/CHANGELOG.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
@@ -867,11 +889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/progress.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1080" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/volume.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -942,20 +959,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/progress.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/switch.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="10" column="9" lean-forward="true" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+        <state relative-caret-position="198">
+          <caret line="11" column="35" lean-forward="true" selection-start-line="11" selection-start-column="35" selection-end-line="11" selection-end-column="35" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/style/index.less">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="e#503#1516#2" expanded="true" />
+            <element signature="e#1562#3171#2" expanded="true" />
+            <element signature="e#4994#6359#2" expanded="true" />
+            <element signature="e#6408#8457#2" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5361">
-          <caret line="5" column="28" selection-start-line="5" selection-start-column="28" selection-end-line="5" selection-end-column="28" />
+        <state relative-caret-position="185">
+          <caret line="342" column="1" lean-forward="true" selection-start-line="342" selection-start-column="1" selection-end-line="342" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#40#0" expanded="true" />
+            <element signature="e#7741#8160#0" />
+            <element signature="e#8169#8912#0" />
+            <element signature="e#9127#9494#0" />
+          </folding>
         </state>
       </provider>
     </entry>
