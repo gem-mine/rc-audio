@@ -3,6 +3,7 @@ import Time from './time'
 import Progress from './progress'
 import Volume from './volume'
 import Audio from './audio'
+import Switch from './switch'
 import addEventListener from 'rc-util/lib/Dom/addEventListener'
 import classNames from 'classnames'
 
@@ -309,13 +310,11 @@ class PrimaryAudio extends Component {
           setCurrentTime={this.setCurrentTime}
           onProgressMouseDown={this.onProgressMouseDown} />
         <div className={`${prefixCls}-content`}>
-          <div
-            className={classNames({
-              [`${prefixCls}-switch`]: true,
-              [`${prefixCls}-switch-play`]: !this.state.playing,
-              [`${prefixCls}-switch-pause`]: this.state.playing
-            })}
-            onClick={this.togglePlay} />
+          <Switch
+            prefixCls={this.props.prefixCls}
+            playing={this.state.playing}
+            togglePlay={this.togglePlay}
+          />
           <Time
             prefixCls={this.props.prefixCls}
             currentTime={this.state.currentTime}
