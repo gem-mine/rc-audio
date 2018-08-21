@@ -3,7 +3,7 @@ function timeUnitFormat (time) {
 }
 
 export function secondsToTime (secs) {
-  secs = Math.round(secs)
+  secs = Math.floor(secs)
   const hours = Math.floor(secs / (60 * 60))
 
   const divisorForMinutes = secs % (60 * 60)

@@ -212,8 +212,8 @@ class PrimaryAudio extends Component {
   onProgressMouseDown = (e) => {
     e.preventDefault()
     this.holding = true // 判断鼠标是否按住
-    const progressLeft = e.currentTarget.getBoundingClientRect().left
-    const progressWidth = e.currentTarget.offsetWidth
+    const progressLeft = e.currentTarget.getBoundingClientRect().left + e.currentTarget.clientLeft
+    const progressWidth = e.currentTarget.clientWidth
     const newProgress = e.pageX - progressLeft
     const currentTime = (newProgress * this.audio.getDuration()) / progressWidth
     this.setState({currentTime: parseFloat(currentTime)})
