@@ -5,7 +5,6 @@ import Volume from './volume'
 import Audio from './audio'
 import Switch from './switch'
 import addEventListener from 'rc-util/lib/Dom/addEventListener'
-import classNames from 'classnames'
 
 class PrimaryAudio extends Component {
   static propTypes = {
