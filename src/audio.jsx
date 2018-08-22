@@ -19,6 +19,9 @@ export default class Audio extends Component {
   getBuffered = () => {
     return this.audioRef.buffered
   }
+  getVolume = () => {
+    return this.audioRef.volume
+  }
   setVolume = (volume) => {
     this.audioRef.volume = volume
   }

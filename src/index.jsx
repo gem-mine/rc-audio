@@ -23,7 +23,7 @@ class PrimaryAudio extends Component {
     cuePoints: React.PropTypes.array,
     onCuePoints: React.PropTypes.func,
     onSeeked: React.PropTypes.func,
-    onLoadStart: React.PropTypes.func,
+    onProgress: React.PropTypes.func,
     onDurationChange: React.PropTypes.func
   }
   static defaultProps = {
@@ -47,22 +47,22 @@ class PrimaryAudio extends Component {
       bufferedTime: 0
     }
   }
+
   componentDidMount () {
     const { volume } = this.props
     if (volume) {
       this.setVolume(this.props.volume)
+    } else {
+      this.setState({volume: this.audio.getVolume()})
     }
   }
 
-  handleBuffer = () => {
+  // 缓冲进度条
+  setBuffered = () => {
     const timeRanges = this.audio.getBuffered()
-    const duration = this.audio.duration
     if (timeRanges.length !== 0) {
       const bufferedTime = timeRanges.end(timeRanges.length - 1)
       this.setState({bufferedTime})
-      if (bufferedTime <= duration) {
-        setTimeout(this.handleBuffer, 800)
-      }
     }
   }
 
@@ -110,6 +110,15 @@ class PrimaryAudio extends Component {
     return Math.round(time / 0.125) * 0.125
   }
 
+  onProgress = (e) => {
+    this.setBuffered()
+
+    const { onProgress } = this.props
+    if (onProgress) {
+      onProgress(e)
+    }
+  }
+
   onTimeUpdate = (e) => {
     const currentTime = this.audio.getCurrentTime()
     if (!this.holding) {
@@ -137,7 +146,7 @@ class PrimaryAudio extends Component {
   onSeeked = (e) => {
     const currentTime = this.audio.getCurrentTime()
     this.lastFiredSegment = this.segmentForCue(currentTime || 0) - 0.125
-    // 跳转到第0秒时
+    // 跳转到第0秒时，处理提示点事件
     if (!currentTime && this.segments[0]) {
       this.segments[0].forEach((item) => {
         this.props.onCuePoints(item, this.audio)
@@ -147,14 +156,6 @@ class PrimaryAudio extends Component {
     const { onSeeked } = this.props
     if (onSeeked) {
       onSeeked(e)
-    }
-  }
-
-  onLoadedMetadata = () => {
-    const { currentTime } = this.props
-    if (currentTime) {
-      this.setState({currentTime: currentTime})
-      this.setCurrentTime(currentTime)
     }
   }
 
@@ -176,21 +177,17 @@ class PrimaryAudio extends Component {
     }
   }
 
-  onLoadStart = (e) => {
-    setTimeout(() => {
-      this.handleBuffer()
-    }, 500)
-
-    const { onLoadStart } = this.props
-    if (onLoadStart) {
-      onLoadStart(e)
-    }
-  }
-
   onDurationChange = (e) => {
+    this.setBuffered()
     this.setCuePoint(this.props.cuePoints)
     this.setState({duration: this.audio.getDuration()})
     this.setState({playing: false})
+
+    const { currentTime } = this.props
+    if (currentTime) {
+      this.setState({currentTime: currentTime})
+      this.setCurrentTime(currentTime)
+    }
 
     const { onDurationChange } = this.props
     if (onDurationChange) {
@@ -330,11 +327,10 @@ class PrimaryAudio extends Component {
           {...restProps}
           ref={(node) => { this.audio = node }}
           onDurationChange={this.onDurationChange}
-          onLoadStart={this.onLoadStart}
-          onLoadedMetadata={this.onLoadedMetadata}
           onSeeked={this.onSeeked}
           onPause={this.onPause}
           onPlay={this.onPlay}
+          onProgress={this.onProgress}
           onTimeUpdate={this.onTimeUpdate} />
       </div>
     )

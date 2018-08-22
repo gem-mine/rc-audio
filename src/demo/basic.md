@@ -13,7 +13,6 @@ class App extends React.Component {
     return (
       <div>
         <Audio 
-          volume={0.2}
           currentTime={10}
           autoPlay={true}
           showProgressBarInfo={false}
