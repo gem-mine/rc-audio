@@ -13,9 +13,6 @@ export default class AudioEl extends Component {
   getDuration = () => {
     return this.audioRef.duration
   }
-  getCurrentTime = () => {
-    return this.audioRef.currentTime
-  }
   getBuffered = () => {
     return this.audioRef.buffered
   }
@@ -25,6 +22,9 @@ export default class AudioEl extends Component {
   setVolume = (volume) => {
     this.audioRef.volume = volume
   }
+  getCurrentTime = () => {
+    return this.audioRef.currentTime
+  }
   setCurrentTime = (currentTime) => {
     this.audioRef.currentTime = parseFloat(currentTime)
   }
@@ -33,6 +33,10 @@ export default class AudioEl extends Component {
   }
   render () {
     const { children, ...restProps } = this.props
+
+    if (typeof restProps.src === 'function') {
+      restProps.src = restProps.src()
+    }
 
     return (
       <audio
