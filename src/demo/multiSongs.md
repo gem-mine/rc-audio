@@ -51,6 +51,7 @@ class App extends React.Component {
           autoPlay={true}
           showProgressBarInfo={false}
           src={this.state.song.url}
+          onEnded={this.nextSong}
         />
         <br />  
         <Button onClick={this.nextSong}>换一首</Button>

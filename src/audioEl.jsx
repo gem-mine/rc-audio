@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Audio extends Component {
+export default class AudioEl extends Component {
   static propTypes = {
     src: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.func])
   }
@@ -32,21 +32,12 @@ export default class Audio extends Component {
     this.audioRef.muted = muted
   }
   render () {
-    const { src, children, ...restProps } = this.props
+    const { children, ...restProps } = this.props
 
-    let srcRes = ''
-    if (src) {
-      if (typeof src === 'function') {
-        srcRes = src()
-      } else {
-        srcRes = src
-      }
-    }
     return (
       <audio
         {...restProps}
         ref={(ref) => { this.audioRef = ref }}
-        src={srcRes}
       >
         {children}
       </audio>

@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import Time from './time'
 import Progress from './progress'
 import Volume from './volume'
-import Audio from './audio'
+import Audio from './audioEl'
 import Switch from './switch'
 import addEventListener from 'rc-util/lib/Dom/addEventListener'
 
-class PrimaryAudio extends Component {
+class RcAudio extends Component {
   static propTypes = {
     prefixCls: React.PropTypes.string,
     src: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.func]),
@@ -337,4 +337,4 @@ class PrimaryAudio extends Component {
   }
 }
 
-export default PrimaryAudio
+export default RcAudio
