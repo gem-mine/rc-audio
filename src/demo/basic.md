@@ -12,9 +12,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Audio 
+        <Audio
+          autoPlay
+          muted
           currentTime={10}
-          autoPlay={true}
           showProgressBarInfo={false}
           onEnded={() => {console.log('播放结束')}}
           onSeeked={() => {console.log('跳转播放')}}

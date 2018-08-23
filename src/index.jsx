@@ -11,11 +11,8 @@ class RcAudio extends Component {
     prefixCls: React.PropTypes.string,
     src: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.func]),
     children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
-    onCanPlay: React.PropTypes.func,
-    onPlay: React.PropTypes.func,
-    onPause: React.PropTypes.func,
-    onTimeUpdate: React.PropTypes.func,
     volume: React.PropTypes.number,
+    muted: React.PropTypes.bool,
     currentTime: React.PropTypes.number,
     autoPlay: React.PropTypes.bool,
     showBufferProgress: React.PropTypes.bool,
@@ -24,6 +21,10 @@ class RcAudio extends Component {
     onCuePoints: React.PropTypes.func,
     onSeeked: React.PropTypes.func,
     onProgress: React.PropTypes.func,
+    onCanPlay: React.PropTypes.func,
+    onPlay: React.PropTypes.func,
+    onPause: React.PropTypes.func,
+    onTimeUpdate: React.PropTypes.func,
     onDurationChange: React.PropTypes.func
   }
   static defaultProps = {
@@ -49,11 +50,14 @@ class RcAudio extends Component {
   }
 
   componentDidMount () {
-    const { volume } = this.props
+    const { volume, muted } = this.props
     if (volume) {
       this.setVolume(this.props.volume)
     } else {
-      this.setState({volume: this.audio.getVolume()})
+      this.setState({volume: 1})
+    }
+    if (muted) {
+      this.setMuted(muted)
     }
   }
 
@@ -202,10 +206,12 @@ class RcAudio extends Component {
   toggleMuted = () => {
     const { muted } = this.state
 
-    this.setState({muted: !muted})
-    this.audio.setMuted(!muted)
+    this.setMuted(!muted)
   }
-
+  setMuted = (muted) => {
+    this.setState({muted})
+    this.audio.setMuted(muted)
+  }
   onProgressMouseDown = (e) => {
     e.preventDefault()
     this.holding = true // 判断鼠标是否按住
