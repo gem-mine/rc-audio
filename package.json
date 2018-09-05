@@ -12,7 +12,7 @@
     "lint": "node lint.js",
     "babel": "babel ./src --out-dir ./lib",
     "start": "md-tools start",
-    "site": "md-tools build -c ./md-tools.config.js",
+    "site": "md-tools build",
     "build": "npm run clean && npm run babel && shx cp -rf src/style/*.less lib/style",
     "clean": "shx rm -rf lib site && shx echo clean Done"
   },
@@ -47,7 +47,7 @@
     "eslint-plugin-promise": "^3.5.0",
     "fs-extra": "^0.26.7",
     "md-tools-cli": "^0.1.11",
-    "md-tools-theme-component-react": "^0.1.15",
+    "md-tools-theme-component-react": "^0.1.17",
     "postcss-color-rgba-fallback": "^3.0.0",
     "pre-commit": "1.x",
     "react": "0.14.9",
