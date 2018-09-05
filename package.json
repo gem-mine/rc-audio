@@ -33,7 +33,6 @@
     "classnames": "~2.2.0"
   },
   "devDependencies": {
-    "@sdp.nd/fish": "^2.0.0",
     "pre-commit": "1.x",
     "fs-extra": "^0.26.7",
     "postcss-color-rgba-fallback": "^3.0.0",
@@ -46,9 +45,6 @@
     "react-document-title": "^2.0.1",
     "dora-plugin-upload": "^0.3.1",
     "react-github-button": "^0.1.1",
-    "@sdp.nd/bisheng-plugin-fish": "^1.0.0",
-    "@sdp.nd/bisheng-theme-component": "^1.0.2",
-    "@sdp.nd/bisheng": "^1.0.0",
     "babel-cli": "^6.18.0",
     "babel-plugin-import": "^1.0.0",
     "babel-eslint": "^7.2.3",
