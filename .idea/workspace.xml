@@ -1,23 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c70eb84-ed69-41d5-bab0-b0d3761f174f" name="Default" comment="更换构建工具">
-      <change beforePath="" afterPath="$PROJECT_DIR$/site/common.adbbd6.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/site/runtime.58b5e4.js" />
+    <list default="true" id="3c70eb84-ed69-41d5-bab0-b0d3761f174f" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/site/common.9312b4.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/site/runtime.fd258a.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/md-tools.config.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change beforePath="$PROJECT_DIR$/site/01215db849aa98806f11.hot-update.json" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" afterPath="$PROJECT_DIR$/package-lock.json" />
       <change beforePath="$PROJECT_DIR$/site/404.html" afterPath="$PROJECT_DIR$/site/404.html" />
-      <change beforePath="$PROJECT_DIR$/site/5429b9adf022c30d631e.hot-update.json" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/site/CHANGELOG.md.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/site/README.md.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/site/changelog.html" afterPath="$PROJECT_DIR$/site/changelog.html" />
-      <change beforePath="$PROJECT_DIR$/site/common.9312b4.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/site/common.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/site/common.adbbd6.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/site/index.html" afterPath="$PROJECT_DIR$/site/index.html" />
-      <change beforePath="$PROJECT_DIR$/site/index.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/site/runtime.fd258a.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/site/runtime.58b5e4.js" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -54,21 +47,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="md-tools.config.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="md-tools.config.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/node_modules/md-tools-theme-component-react/md-tools.config.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="204">
+              <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="275">
-              <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+            <state relative-caret-position="54">
+              <caret line="29" column="10" lean-forward="false" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
               <folding />
             </state>
           </provider>
@@ -185,17 +178,6 @@
               <item name="rc-audio" type="462c0819:PsiDirectoryNode" />
               <item name="site" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="rc-audio" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rc-audio" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rc-audio" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rc-audio" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="style" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -238,7 +220,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1536133981232</updated>
-      <workItem from="1536133982336" duration="2455000" />
+      <workItem from="1536133982336" duration="2890000" />
     </task>
     <task id="LOCAL-00001" summary="更换构建工具">
       <created>1536135748142</created>
@@ -247,11 +229,18 @@
       <option name="project" value="LOCAL" />
       <updated>1536135748142</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="md-tools-theme-component-react更新">
+      <created>1536136516732</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1536136516732</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2455000" />
+    <option name="totallyTimeSpent" value="2890000" />
   </component>
   <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
@@ -295,7 +284,8 @@
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
     <MESSAGE value="更换构建工具" />
-    <option name="LAST_COMMIT_MESSAGE" value="更换构建工具" />
+    <MESSAGE value="md-tools-theme-component-react更新" />
+    <option name="LAST_COMMIT_MESSAGE" value="md-tools-theme-component-react更新" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -318,14 +308,6 @@
             <folding />
           </first_editor>
           <second_editor />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/md-tools-theme-component-react/md-tools.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -374,10 +356,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package-lock.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="9667" column="5" lean-forward="false" selection-start-line="9667" selection-start-column="5" selection-end-line="9667" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="275">
-          <caret line="24" column="9" lean-forward="true" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        <state relative-caret-position="54">
+          <caret line="29" column="10" lean-forward="false" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/md-tools-theme-component-react/md-tools.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="28" lean-forward="true" selection-start-line="12" selection-start-column="28" selection-end-line="12" selection-end-column="28" />
           <folding />
         </state>
       </provider>
