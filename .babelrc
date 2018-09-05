@@ -5,6 +5,7 @@
     "transform-decorators-legacy",
     "transform-es3-member-expression-literals",
     "transform-es3-property-literals",
-    "transform-proto-to-assign"
+    "transform-proto-to-assign",
+    ["import", {"libraryName": "fish", "libraryDirectory": "lib", "style": true}]
   ]
 }

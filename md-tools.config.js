@@ -1,0 +1,22 @@
+const path = require('path')
+const pkg = require(path.join(process.cwd(), 'package.json'))
+const cname = pkg.name
+module.exports = {
+  root: `/${cname}/site/`,
+  source: ['README.md', 'CHANGELOG.md'],
+  engine: 'md-tools-engine-react',
+  themeConfig: {
+    title: cname,
+    github: pkg.homepage
+  },
+  theme: 'md-tools-theme-component-react',
+  webpackConfig: config => {
+    const alias = {
+      'react-router': 'react-router/umd/ReactRouter'
+    }
+    alias[cname + '/lib'] = path.join(process.cwd(), 'src') // 必须alias[cname]上方
+    alias[cname] = path.join(process.cwd(), 'src')
+    config.resolve.alias = alias
+    return config
+  }
+}
