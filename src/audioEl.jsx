@@ -20,7 +20,7 @@ export default class AudioEl extends Component {
     return this.audioRef.volume
   }
   setVolume = (volume) => {
-    this.audioRef.volume = volume
+    this.audioRef.volume = Math.min(Math.max(volume, 0), 1)
   }
   getCurrentTime = () => {
     return this.audioRef.currentTime

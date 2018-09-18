@@ -48,6 +48,7 @@
       top: 0;
       left: 0;
       height: 8px;
+      max-width: 100%;
       background: #797979;
     }
     &-playing-wrap {
@@ -127,6 +128,7 @@
     height: 32px;
     line-height: 32px;
     vertical-align: top;
+    width: 150px;
   }
   &-volume {
     position: absolute;
@@ -165,7 +167,13 @@
       background: #CACBCD;
       height: 8px;
       width: 8px;
+      margin-left: -4px;
       border-radius: 50% 50%;
     }
+  }
+  &-tools {
+    display: inline-block;
+    vertical-align: top;
+    float: right;
   }
 }

@@ -20,10 +20,10 @@ class RcAudio extends Component {
     cuePoints: React.PropTypes.array,
     onCuePoints: React.PropTypes.func,
     onSeeked: React.PropTypes.func,
-    onProgress: React.PropTypes.func,
     onCanPlay: React.PropTypes.func,
     onPlay: React.PropTypes.func,
     onPause: React.PropTypes.func,
+    renderTools: React.PropTypes.func,
     onTimeUpdate: React.PropTypes.func,
     onDurationChange: React.PropTypes.func
   }
@@ -60,17 +60,27 @@ class RcAudio extends Component {
       this.setMuted(muted)
     }
   }
-
+  componentWillUnmount () {
+    clearTimeout(this.bufferTimeId)
+  }
   // 缓冲进度条
   setBuffered = () => {
+    if (!this.audio) {
+      return
+    }
     const timeRanges = this.audio.getBuffered()
+    const duration = this.audio.getDuration()
     if (timeRanges.length !== 0) {
       const bufferedTime = timeRanges.end(timeRanges.length - 1)
       this.setState({bufferedTime})
+      if (bufferedTime < duration) {
+        this.bufferTimeId = setTimeout(this.setBuffered, 500)
+      }
     }
   }
 
   setVolume = (volume) => {
+    volume = Math.min(Math.max(volume, 0), 1)
     this.setState({volume})
     this.audio.setVolume(volume)
   }
@@ -110,17 +120,10 @@ class RcAudio extends Component {
 
   segmentForCue = (cue) => {
     let time = cue && !isNaN(cue.time) ? cue.time : cue
-    if (time < 0) time = this.audio.getDuration() + time
-    return Math.round(time / 0.125) * 0.125
-  }
-
-  onProgress = (e) => {
-    this.setBuffered()
-
-    const { onProgress } = this.props
-    if (onProgress) {
-      onProgress(e)
+    if (time < 0) {
+      time = this.audio.getDuration() + time
     }
+    return Math.round(time / 0.125) * 0.125
   }
 
   onTimeUpdate = (e) => {
@@ -214,12 +217,15 @@ class RcAudio extends Component {
   }
   onProgressMouseDown = (e) => {
     e.preventDefault()
+    if (e.button !== 0) {
+      return
+    }
     this.holding = true // 判断鼠标是否按住
     const progressLeft = e.currentTarget.getBoundingClientRect().left + e.currentTarget.clientLeft
     const progressWidth = e.currentTarget.clientWidth
     const newProgress = e.pageX - progressLeft
-    const currentTime = (newProgress * this.audio.getDuration()) / progressWidth
-    this.setState({currentTime: parseFloat(currentTime)})
+    const currentTime = (newProgress * this.state.duration) / progressWidth
+    this.setState({currentTime: Math.min(Math.max(currentTime, 0), this.state.duration)})
 
     // 拖动进度条
     this.progressMouseMove = addEventListener(document, 'mousemove', (e) => {
@@ -231,7 +237,7 @@ class RcAudio extends Component {
   onProgressMouseMove = (progressLeft, progressWidth) => {
     return (event) => {
       if (this.holding) {
-        const duration = this.audio.getDuration()
+        const duration = this.state.duration
         const current = (duration * (event.pageX - progressLeft)) / progressWidth
         if (current >= 0 && current < duration) {
           this.setState({currentTime: current})
@@ -254,13 +260,15 @@ class RcAudio extends Component {
 
   onVolumeMouseDown = (e) => {
     e.preventDefault()
+    if (e.button !== 0) {
+      return
+    }
     this.holding = true
     const volumeLeft = e.currentTarget.getBoundingClientRect().left
     const volumeWidth = e.currentTarget.offsetWidth
     const newVolume = e.pageX - volumeLeft
     const volume = (newVolume) / volumeWidth
-    this.setState({volume})
-    this.audio.setVolume(volume)
+    this.setVolume(volume)
 
     // 拖动音量条
     this.volumeMouseMove = addEventListener(document, 'mousemove', (e) => {
@@ -290,13 +298,18 @@ class RcAudio extends Component {
       this.volumeMouseUp.remove()
     }
   }
-
+  saveAudioRef = (node) => {
+    this.audio = node
+    // 获取audio标签对象
+    this.nativeAudioRef = node && node.audioRef
+  }
   render () {
     const {
       prefixCls,
       showBufferProgress,
       showProgressBarInfo,
       cuePoints,
+      renderTools,
       ...restProps } = this.props
 
     return (
@@ -328,15 +341,17 @@ class RcAudio extends Component {
             onVolumeMouseDown={this.onVolumeMouseDown}
             toggleMuted={this.toggleMuted}
           />
+          <div className={`${prefixCls}-tools`}>
+            { renderTools && renderTools()}
+          </div>
         </div>
         <Audio
           {...restProps}
-          ref={(node) => { this.audio = node }}
+          ref={this.saveAudioRef}
           onDurationChange={this.onDurationChange}
           onSeeked={this.onSeeked}
           onPause={this.onPause}
           onPlay={this.onPlay}
-          onProgress={this.onProgress}
           onTimeUpdate={this.onTimeUpdate} />
       </div>
     )

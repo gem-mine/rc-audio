@@ -1,7 +1,7 @@
 {
   "name": "rc-audio",
   "port": "8000",
-  "version": "1.0.1",
+  "version": "1.0.4",
   "description": "图片查看器组件",
   "license": "MIT",
   "main": "lib/index.js",
