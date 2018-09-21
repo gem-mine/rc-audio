@@ -1,7 +1,7 @@
 import React from 'react'
 import classNames from 'classnames'
 
-export default props => {
+const Switch = props => {
   return (
     <div
       className={classNames({
@@ -12,3 +12,11 @@ export default props => {
       onClick={props.togglePlay} />
   )
 }
+
+Switch.propTypes = {
+  prefixCls: React.PropTypes.string,
+  playing: React.PropTypes.bool,
+  togglePlay: React.PropTypes.func
+}
+
+export default Switch

@@ -1,8 +1,8 @@
 {
   "name": "rc-audio",
   "port": "8000",
-  "version": "1.0.4",
-  "description": "图片查看器组件",
+  "version": "1.0.5",
+  "description": "react音频播放组件",
   "license": "MIT",
   "main": "lib/index.js",
   "engines": {
@@ -16,7 +16,6 @@
     "build": "npm run clean && npm run babel && shx cp -rf src/style/*.less lib/style",
     "clean": "shx rm -rf lib site && shx echo clean Done"
   },
-  "homepage": "http://git.sdp.nd/component-h5/md-date-range",
   "pre-commit": [
     "lint"
   ],
@@ -30,6 +29,7 @@
     "rc-util": "^4.5.1"
   },
   "devDependencies": {
+    "@sdp.nd/eslint-config-react": "^2.0.0",
     "babel-cli": "^6.18.0",
     "babel-eslint": "^7.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",

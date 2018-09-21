@@ -3,6 +3,13 @@ import {decimalToPercent} from './util'
 import classNames from 'classnames'
 
 export default class Volume extends Component {
+  static propTypes = {
+    prefixCls: React.PropTypes.string,
+    volume: React.PropTypes.number,
+    muted: React.PropTypes.bool,
+    onVolumeMouseDown: React.PropTypes.func,
+    toggleMuted: React.PropTypes.func
+  }
   render () {
     const { prefixCls, volume, onVolumeMouseDown, toggleMuted, muted } = this.props
     return (
