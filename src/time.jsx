@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { secondsToTime } from './util'
 
 const Time = props => {
@@ -8,9 +9,9 @@ const Time = props => {
 }
 
 Time.propTypes = {
-  prefixCls: React.PropTypes.string,
-  currentTime: React.PropTypes.number,
-  duration: React.PropTypes.number
+  prefixCls: PropTypes.string,
+  currentTime: PropTypes.number,
+  duration: PropTypes.number
 }
 
 export default Time

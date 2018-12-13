@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class AudioEl extends Component {
   static propTypes = {
-    src: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.func])
+    src: PropTypes.oneOfType([PropTypes.string, PropTypes.func])
   }
   play = () => {
     this.audioRef.play()

@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { decimalToPercent, secondsToTime } from './util'
 
 export default class ProgressBar extends Component {
   static propTypes = {
-    prefixCls: React.PropTypes.string,
-    currentTime: React.PropTypes.number,
-    duration: React.PropTypes.number,
-    onProgressMouseDown: React.PropTypes.func,
-    cuePoints: React.PropTypes.array,
-    bufferedTime: React.PropTypes.number,
-    showBufferProgress: React.PropTypes.bool,
-    showProgressBarInfo: React.PropTypes.bool,
-    setCurrentTime: React.PropTypes.func
+    prefixCls: PropTypes.string,
+    currentTime: PropTypes.number,
+    duration: PropTypes.number,
+    onProgressMouseDown: PropTypes.func,
+    cuePoints: PropTypes.array,
+    bufferedTime: PropTypes.number,
+    showBufferProgress: PropTypes.bool,
+    showProgressBarInfo: PropTypes.bool,
+    setCurrentTime: PropTypes.func
   }
   constructor (props) {
     super(props)

@@ -1,14 +1,15 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {decimalToPercent} from './util'
 import classNames from 'classnames'
 
 export default class Volume extends Component {
   static propTypes = {
-    prefixCls: React.PropTypes.string,
-    volume: React.PropTypes.number,
-    muted: React.PropTypes.bool,
-    onVolumeMouseDown: React.PropTypes.func,
-    toggleMuted: React.PropTypes.func
+    prefixCls: PropTypes.string,
+    volume: PropTypes.number,
+    muted: PropTypes.bool,
+    onVolumeMouseDown: PropTypes.func,
+    toggleMuted: PropTypes.func
   }
   render () {
     const { prefixCls, volume, onVolumeMouseDown, toggleMuted, muted } = this.props

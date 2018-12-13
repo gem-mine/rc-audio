@@ -53,7 +53,7 @@ class App extends React.Component {
           showProgressBarInfo={false}
           onEnded={() => {console.log('播放结束')}}
           onSeeked={() => {console.log('跳转播放')}}
-          src={() => 'http://os71std62.bkt.clouddn.com/%E7%89%9B%E5%A5%B6%E5%92%96%E5%95%A1%20-%20%E6%98%8E%E5%A4%A9%E4%BD%A0%E5%A5%BD.mp3'}
+          src={() => '//cdncs.101.com/v0.1/static/fish/media/%E7%89%9B%E5%A5%B6%E5%92%96%E5%95%A1%20-%20%E6%98%8E%E5%A4%A9%E4%BD%A0%E5%A5%BD.mp3'}
         />
       </div>
     );
@@ -73,20 +73,16 @@ import Audio from 'rc-audio'
 
 const songs = [ 
   { 
-    url: 'http://os71std62.bkt.clouddn.com/Alan%20Walker%20-%20Faded.mp3',
-    title: 'faded'
+    url: '//cdncs.101.com/v0.1/static/fish/media/%E7%89%9B%E5%A5%B6%E5%92%96%E5%95%A1%20-%20%E6%98%8E%E5%A4%A9%E4%BD%A0%E5%A5%BD.mp3',
+    title: '明天你好'
   },
   { 
-    url: 'http://os71std62.bkt.clouddn.com/%E5%AE%8B%E5%86%AC%E9%87%8E%20-%20%E5%AE%89%E5%92%8C%E6%A1%A5.mp3',
-    title: '安和桥'
+    url: '//cdncs.101.com/v0.1/static/fish/media/%E4%B8%80%E4%B8%AA%E4%BA%BA.mp3',
+    title: '一个人'
   },
   { 
-    url: 'http://os71std62.bkt.clouddn.com/%E9%99%88%E4%B8%80%E5%8F%91%E5%84%BF%20-%20%E7%AB%A5%E8%AF%9D%E9%95%87.mp3',
-    title: '童话镇'
-  },
-  { 
-    url: 'http://os71std62.bkt.clouddn.com/%E8%8E%AB%E6%96%87%E8%94%9A%20-%20%E5%A4%96%E9%9D%A2%E7%9A%84%E4%B8%96%E7%95%8C.mp3',
-    title: '外面的世界'
+    url: '//cdncs.101.com/v0.1/static/fish/media/%E4%BC%A4%E5%BF%83%E5%A4%AA%E5%B9%B3%E6%B4%8B.mp3',
+    title: '伤心太平洋'
   }
 ]
 
@@ -145,7 +141,34 @@ class App extends React.Component {
           cuePoints={[ {time: 30, title: '标题1'}, {time: 60, title: '标题2'}, {time: 150, title: '标题3'} ]}
           onCuePoints={(cuePoint, audio) => {console.log(cuePoint, audio)}}
           showBufferProgress={false}
-          src={'http://os71std62.bkt.clouddn.com/%E7%89%9B%E5%A5%B6%E5%92%96%E5%95%A1%20-%20%E6%98%8E%E5%A4%A9%E4%BD%A0%E5%A5%BD.mp3'}
+          src={'//cdncs.101.com/v0.1/static/fish/media/%E7%89%9B%E5%A5%B6%E5%92%96%E5%95%A1%20-%20%E6%98%8E%E5%A4%A9%E4%BD%A0%E5%A5%BD.mp3'}
+        >
+          Your browser does not support the audio element.
+        </Audio>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+````
+
+### 自定义图标
+
+给进度条某些时间点标记。
+
+````jsx
+import "rc-audio/lib/style/";
+import Audio from 'rc-audio'
+
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <Audio
+          playIcon={<span>播放</span>}
+          pauseIcon={<span>暂停</span>}
+          src={'//cdncs.101.com/v0.1/static/fish/media/%E7%89%9B%E5%A5%B6%E5%92%96%E5%95%A1%20-%20%E6%98%8E%E5%A4%A9%E4%BD%A0%E5%A5%BD.mp3'}
         >
           Your browser does not support the audio element.
         </Audio>

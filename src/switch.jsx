@@ -1,22 +1,29 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import classNames from 'classnames'
 
 const Switch = props => {
+  const icon = props.playing ? props.pauseIcon : props.playIcon
   return (
-    <div
-      className={classNames({
-        [`${props.prefixCls}-switch`]: true,
-        [`${props.prefixCls}-switch-play`]: !props.playing,
-        [`${props.prefixCls}-switch-pause`]: props.playing
-      })}
-      onClick={props.togglePlay} />
+    <div className={`${props.prefixCls}-switch`} onClick={props.togglePlay} >
+      {icon || (
+        <div
+          className={classNames({
+            [`${props.prefixCls}-switch-play`]: !props.playing,
+            [`${props.prefixCls}-switch-pause`]: props.playing
+          })}
+        />
+      )}
+    </div>
   )
 }
 
 Switch.propTypes = {
-  prefixCls: React.PropTypes.string,
-  playing: React.PropTypes.bool,
-  togglePlay: React.PropTypes.func
+  prefixCls: PropTypes.string,
+  playing: PropTypes.bool,
+  togglePlay: PropTypes.func,
+  pauseIcon: PropTypes.node,
+  playIcon: PropTypes.node
 }
 
 export default Switch

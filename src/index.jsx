@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Time from './time'
 import Progress from './progress'
 import Volume from './volume'
@@ -8,24 +9,24 @@ import addEventListener from 'rc-util/lib/Dom/addEventListener'
 
 class RcAudio extends Component {
   static propTypes = {
-    prefixCls: React.PropTypes.string,
-    src: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.func]),
-    children: React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.node]),
-    volume: React.PropTypes.number,
-    muted: React.PropTypes.bool,
-    currentTime: React.PropTypes.number,
-    autoPlay: React.PropTypes.bool,
-    showBufferProgress: React.PropTypes.bool,
-    showProgressBarInfo: React.PropTypes.bool,
-    cuePoints: React.PropTypes.array,
-    onCuePoints: React.PropTypes.func,
-    onSeeked: React.PropTypes.func,
-    onCanPlay: React.PropTypes.func,
-    onPlay: React.PropTypes.func,
-    onPause: React.PropTypes.func,
-    renderTools: React.PropTypes.func,
-    onTimeUpdate: React.PropTypes.func,
-    onDurationChange: React.PropTypes.func
+    prefixCls: PropTypes.string,
+    src: PropTypes.oneOfType([PropTypes.string, PropTypes.func]),
+    children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+    volume: PropTypes.number,
+    muted: PropTypes.bool,
+    currentTime: PropTypes.number,
+    autoPlay: PropTypes.bool,
+    showBufferProgress: PropTypes.bool,
+    showProgressBarInfo: PropTypes.bool,
+    cuePoints: PropTypes.array,
+    onCuePoints: PropTypes.func,
+    onSeeked: PropTypes.func,
+    onCanPlay: PropTypes.func,
+    onPlay: PropTypes.func,
+    onPause: PropTypes.func,
+    renderTools: PropTypes.func,
+    onTimeUpdate: PropTypes.func,
+    onDurationChange: PropTypes.func
   }
   static defaultProps = {
     prefixCls: 'rc-audio',
@@ -310,6 +311,8 @@ class RcAudio extends Component {
       showProgressBarInfo,
       cuePoints,
       renderTools,
+      playIcon,
+      pauseIcon,
       ...restProps } = this.props
 
     return (
@@ -329,6 +332,8 @@ class RcAudio extends Component {
             prefixCls={prefixCls}
             playing={this.state.playing}
             togglePlay={this.togglePlay}
+            playIcon={playIcon}
+            pauseIcon={pauseIcon}
           />
           <Time
             prefixCls={this.props.prefixCls}
