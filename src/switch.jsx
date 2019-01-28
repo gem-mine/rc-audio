@@ -8,6 +8,7 @@ const Switch = props => {
     <div className={`${props.prefixCls}-switch`} onClick={props.togglePlay} >
       {icon || (
         <div
+          unselectable='on'
           className={classNames({
             [`${props.prefixCls}-switch-play`]: !props.playing,
             [`${props.prefixCls}-switch-pause`]: props.playing

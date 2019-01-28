@@ -25,3 +25,7 @@ export function secondsToTime (secs) {
 export function decimalToPercent (decimal) {
   return `${decimal * 100}%`
 }
+
+export function isIe9 () {
+  return !window.atob
+}

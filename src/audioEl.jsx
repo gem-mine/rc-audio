@@ -27,7 +27,9 @@ export default class AudioEl extends Component {
     return this.audioRef.currentTime
   }
   setCurrentTime = (currentTime) => {
-    this.audioRef.currentTime = parseFloat(currentTime)
+    try {
+      this.audioRef.currentTime = parseFloat(currentTime)
+    } catch (ignore) {}
   }
   setMuted = (muted) => {
     this.audioRef.muted = muted

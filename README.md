@@ -185,7 +185,7 @@ ReactDOM.render(<App />, mountNode);
 | 参数      | 说明                                     | 类型       | 默认值 |
 |-----------|------------------------------------------|------------|-------|
 | src | 音频链接 | string \| function | 无 |
-| currentTime | 初始音频播放位置，单位为秒 | number | 无 |
+| currentTime | 初始音频播放位置，单位为秒，注意：注意：ie9下初始化设置currentTime会报错，所以此参数ie9下无效 | number | 无 |
 | volume | 初始音量，范围为0到1 | number | 无 |
 | muted | 是否静音 | boolean | 无 |
 | showProgressBarInfo | hover在进度条的时候是否显示进度信息 | boolean | true |
