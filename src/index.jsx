@@ -6,7 +6,7 @@ import Volume from './volume'
 import Audio from './audioEl'
 import Switch from './switch'
 import addEventListener from 'rc-util/lib/Dom/addEventListener'
-import { isIe9 } from './util'
+import { isIe9, isIe } from './util'
 
 class RcAudio extends Component {
   static propTypes = {
@@ -186,6 +186,16 @@ class RcAudio extends Component {
     }
   }
 
+  // IE下播放结束不触发暂停事件
+  onEnded = (e) => {
+    this.setState({ playing: false })
+
+    const { onEnded } = this.props
+    if (onEnded) {
+      onEnded(e)
+    }
+  }
+
   onDurationChange = (e) => {
     this.setBuffered()
     this.setCuePoint(this.props.cuePoints)
@@ -205,7 +215,15 @@ class RcAudio extends Component {
   }
 
   togglePlay = () => {
-    this.state.playing ? this.audio.pause() : this.audio.play()
+    if (this.state.playing) {
+      this.audio.pause()
+    } else {
+      this.audio.play()
+    }
+    // IE下播放结束后重新开始播放不触发play事件
+    if (isIe()) {
+      this.setState({ playing: !this.state.playing })
+    }
   }
 
   toggleMuted = () => {
@@ -357,6 +375,7 @@ class RcAudio extends Component {
           onDurationChange={this.onDurationChange}
           onSeeked={this.onSeeked}
           onPause={this.onPause}
+          onEnded={this.onEnded}
           onPlay={this.onPlay}
           onTimeUpdate={this.onTimeUpdate} />
       </div>

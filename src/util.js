@@ -29,3 +29,7 @@ export function decimalToPercent (decimal) {
 export function isIe9 () {
   return !window.atob
 }
+
+export function isIe () {
+  return window.ActiveXObject || 'ActiveXObject' in window
+}
