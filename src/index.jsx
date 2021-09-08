@@ -6,7 +6,7 @@ import Volume from './volume'
 import Audio from './audioEl'
 import Switch from './switch'
 import addEventListener from 'rc-util/lib/Dom/addEventListener'
-import { isIe9, isIe } from './util'
+import { isIe } from './util'
 
 class RcAudio extends Component {
   static propTypes = {
@@ -201,12 +201,6 @@ class RcAudio extends Component {
     this.setCuePoint(this.props.cuePoints)
     this.setState({duration: this.audio.getDuration()})
     this.setState({playing: false})
-
-    const { currentTime } = this.props
-    if (currentTime && !isIe9()) {
-      this.setState({currentTime: currentTime})
-      this.setCurrentTime(currentTime)
-    }
 
     const { onDurationChange } = this.props
     if (onDurationChange) {
