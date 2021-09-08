@@ -1,7 +1,7 @@
 {
   "name": "rc-audio",
   "port": "8000",
-  "version": "2.0.3-beta.0",
+  "version": "2.0.3-beta.1",
   "description": "react音频播放组件",
   "license": "MIT",
   "main": "lib/index.js",
