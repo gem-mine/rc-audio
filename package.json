@@ -1,7 +1,7 @@
 {
   "name": "rc-audio",
   "port": "8000",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "react音频播放组件",
   "license": "MIT",
   "main": "lib/index.js",
@@ -24,6 +24,7 @@
     "lib",
     "index.d.ts"
   ],
+  "types": "index.d.ts",
   "dependencies": {
     "babel-runtime": "^6.22.0",
     "classnames": "~2.2.0",
