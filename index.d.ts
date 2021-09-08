@@ -13,6 +13,7 @@ export interface AudioProps {
     time: number;
     title: string;
   }>;
+  size?: string;
   showBufferProgress?: boolean;
   onEnded?: (e: Event) => void;
   onTimeUpdate?: (e: Event) => void;
@@ -22,7 +23,8 @@ export interface AudioProps {
     title: string;
     index: number;
   }) => void;
-  renderCustom?: () => React.ReactElement;
+  renderTools?: () => React.ReactNode;
+  renderCustom?: () => React.ReactNode;
 }
 
 declare class RcAudio extends React.Component<AudioProps, any> {
